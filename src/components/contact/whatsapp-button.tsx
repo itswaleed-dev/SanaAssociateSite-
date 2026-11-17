@@ -2,7 +2,7 @@
 import { motion } from 'framer-motion';
 import { MessageCircle } from 'lucide-react';
 
-const WANUM = '+9233009470509'; 
+const WANUM = '+923009470509'; 
 const WAMSG = encodeURIComponent('Hello Sana Associates! I would like to get more information about your architecture and design services.');
 
 export function WhatsAppButton() {
