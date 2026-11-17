@@ -20,9 +20,9 @@ export const metadata: Metadata = {
     'Premium architecture, interior, and exterior design studio based in Lahore, Pakistan.',
 
   icons: {
-    icon: 'https://res.cloudinary.com/do3bdamxv/image/upload/v1794899292/logo_sana001_njjftx.jpg',
-    shortcut: 'https://res.cloudinary.com/do3bdamxv/image/upload/v1794899292/logo_sana001_njjftx.jpg',
-    apple: 'https://res.cloudinary.com/do3bdamxv/image/upload/v1794899292/logo_sana001_njjftx.jpg',
+    icon: 'https://res.cloudinary.com/do3bdamxv/image/upload/v1794901294/logo_al7nxa.png',
+    shortcut: 'https://res.cloudinary.com/do3bdamxv/image/upload/v1794901294/logo_al7nxa.png',
+    apple: 'https://res.cloudinary.com/do3bdamxv/image/upload/v1794901294/logo_al7nxa.png',
   },
 };
 
