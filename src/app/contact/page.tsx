@@ -9,6 +9,7 @@ export default function ContactPage() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', projectType: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [whatsappSent, setWhatsappSent] = useState<boolean | null>(null);
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -27,9 +28,32 @@ export default function ContactPage() {
       const data = await res.json();
 
       if (res.ok && data.success) {
-        toast('success', 'Thank you! Your inquiry has been received.');
-        setSubmitted(true);
         setForm({ name: '', email: '', phone: '', projectType: '', message: '' });
+
+        try {
+          const whatsappRes = await fetch('/api/send-whatsapp', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              name: form.name,
+              email: form.email,
+              message: form.message,
+            }),
+          });
+          const whatsappData = await whatsappRes.json();
+
+          if (whatsappRes.ok && whatsappData.success) {
+            setWhatsappSent(true);
+            toast('success', 'Your inquiry has been received and sent to WhatsApp.');
+          } else {
+            setWhatsappSent(false);
+            toast('error', `Your inquiry was saved, but WhatsApp notification failed. ${whatsappData.error || ''}`.trim());
+          }
+        } catch {
+          setWhatsappSent(false);
+          toast('error', 'Your inquiry was saved, but the WhatsApp notification could not be sent.');
+        }
+        setSubmitted(true);
       } else {
         toast('error', data.error || 'Failed to submit inquiry. Please try again.');
       }
@@ -147,11 +171,16 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-3xl font-extrabold text-white tracking-tight">Inquiry Received</h3>
                 <p className="text-white/60 max-w-md mx-auto text-sm leading-relaxed font-light">
-                  Thank you for entrusting Sana Associates with your architectural project. A principal architect will review your brief and contact you shortly.
+                  {whatsappSent === false
+                    ? 'Your inquiry was saved, but its WhatsApp notification could not be sent. Please contact us directly if you need an immediate response.'
+                    : 'Thank you for entrusting Sana Associates with your architectural project. A principal architect will review your brief and contact you shortly.'}
                 </p>
                 <div className="pt-4">
                   <button
-                    onClick={() => setSubmitted(false)}
+                    onClick={() => {
+                      setSubmitted(false);
+                      setWhatsappSent(null);
+                    }}
                     className="px-8 py-3.5 rounded-full bg-[#52d6d0] text-black font-bold text-xs uppercase tracking-wider hover:bg-[#8aeae3] transition-all"
                   >
                     Send Another Inquiry

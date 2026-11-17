@@ -3,27 +3,15 @@ import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/section-heading';
 
 const mockTeam = [
+  
   {
     _id: 't1',
-    name: 'Ahmed Khan',
-    position: 'Principal Architect & Founder',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop',
-    bio: '15+ years crafting luxury residential landmarks and modern commercial architectures across Pakistan.',
-  },
-  {
-    _id: 't2',
-    name: 'Sana Tariq',
-    position: 'Senior Interior Designer',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop',
+    name: 'Sana Ullan ',
+    position: 'Senior Architect & Interior Designer',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXO8r1Pwp8n3iQCHsyVDasAOQsuCI2j6HJLqimWW1I7w&s',
     bio: 'Specialist in contemporary bespoke interiors, bespoke Italian cabinetry, and atmospheric illumination.',
   },
-  {
-    _id: 't3',
-    name: 'Bilal Hassan',
-    position: 'Exterior & Facade Specialist',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop',
-    bio: 'Expert in parametric facades, structural stone engineering, and landscape integration.',
-  },
+ 
 ];
 
 export function TeamSection({ dbData }: { dbData: any[] | null }) {
@@ -32,9 +20,9 @@ export function TeamSection({ dbData }: { dbData: any[] | null }) {
   return (
     <section id="about" className="py-24 md:py-32 bg-[#0a0a0a] relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10">
-        <SectionHeading title="Meet Our Principals" subtitle="Master Architects & Designers" />
+        <SectionHeading title="Meet Our Owner" subtitle="Master Architects & Designers" />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid  gap-8">
           {team.map((m: any, i: number) => (
             <motion.div
               key={m._id || m.id || i}
